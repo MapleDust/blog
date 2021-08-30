@@ -1,0 +1,14 @@
+.bg{
+  background: url(../img/devTools/bg.jpg) no-repeat center 0px;
+  background-position: center 0;
+  background-size: cover;
+}
+.card{
+  margin-top: 1rem;
+  margin-right: 1rem;
+  width: 18rem;
+}
+.card>img{
+  width: 65%;
+  height: 65%;
+}
