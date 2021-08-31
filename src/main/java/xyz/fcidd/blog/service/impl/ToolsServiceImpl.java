@@ -45,7 +45,8 @@ public class ToolsServiceImpl implements ToolsService {
             throw new NullBase64Exception("请输入需要解密的Base64编码");
         }
         //检查是否为Base64编码
-        String base64replace = base64.replaceAll(" +", "+");
+        String base64Trim = base64.trim();
+        String base64replace = base64Trim.replaceAll(" +", "+");
         String base64Pattern = "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$";
         boolean isBase64 = Pattern.matches(base64Pattern, base64replace);
         if (!isBase64) {
