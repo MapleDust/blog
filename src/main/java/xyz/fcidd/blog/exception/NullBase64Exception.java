@@ -3,7 +3,7 @@ package xyz.fcidd.blog.exception;
 /**
  * base64编码为空
  */
-public class NullBase64Exception extends ServiceException{
+public class NullBase64Exception extends ServiceException {
     public NullBase64Exception() {
     }
 

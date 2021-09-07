@@ -17,8 +17,8 @@ public class BlogApplication {
     }
 
     @Bean
-    public Connector connector(){
-        Connector connector=new Connector("org.apache.coyote.http11.Http11NioProtocol");
+    public Connector connector() {
+        Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
         connector.setScheme("http");
         connector.setPort(80);
         connector.setSecure(false);
@@ -27,13 +27,13 @@ public class BlogApplication {
     }
 
     @Bean
-    public TomcatServletWebServerFactory tomcatServletWebServerFactory(Connector connector){
-        TomcatServletWebServerFactory tomcat=new TomcatServletWebServerFactory(){
+    public TomcatServletWebServerFactory tomcatServletWebServerFactory(Connector connector) {
+        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
             @Override
             protected void postProcessContext(Context context) {
-                SecurityConstraint securityConstraint=new SecurityConstraint();
+                SecurityConstraint securityConstraint = new SecurityConstraint();
                 securityConstraint.setUserConstraint("CONFIDENTIAL");
-                SecurityCollection collection=new SecurityCollection();
+                SecurityCollection collection = new SecurityCollection();
                 collection.addPattern("/*");
                 securityConstraint.addCollection(collection);
                 context.addConstraint(securityConstraint);

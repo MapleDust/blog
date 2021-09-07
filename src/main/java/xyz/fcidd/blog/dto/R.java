@@ -58,11 +58,11 @@ public class R<T> implements Serializable {
         /**
          * Base64编码为空
          */
-        int ERR_NULL_BASE64=402;
+        int ERR_NULL_BASE64 = 402;
         /**
          * Base64编码无效
          */
-        int ERR_BASE64=403;
+        int ERR_BASE64 = 403;
         /**
          * 未知错误
          */

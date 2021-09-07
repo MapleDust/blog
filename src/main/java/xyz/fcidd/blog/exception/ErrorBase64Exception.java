@@ -3,7 +3,7 @@ package xyz.fcidd.blog.exception;
 /**
  * 无效的Base64编码
  */
-public class ErrorBase64Exception extends ServiceException{
+public class ErrorBase64Exception extends ServiceException {
     public ErrorBase64Exception() {
     }
 
