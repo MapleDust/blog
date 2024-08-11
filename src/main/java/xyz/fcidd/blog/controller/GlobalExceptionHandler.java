@@ -3,6 +3,7 @@ package xyz.fcidd.blog.controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import xyz.fcidd.blog.dto.R;
+import xyz.fcidd.blog.dto.State;
 import xyz.fcidd.blog.exception.Base64NullTextException;
 import xyz.fcidd.blog.exception.ErrorBase64Exception;
 import xyz.fcidd.blog.exception.NullBase64Exception;
@@ -16,17 +17,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ServiceException.class)
     public R handlerException(Throwable e) {
         //加密的文本为空
-        if (e instanceof Base64NullTextException) {
-            return R.failure(R.State.ERR_BASE64_NULL_TEXT, e);
+        return switch (e) {
+            case Base64NullTextException base64NullTextException -> R.failure(State.ERR_BASE64_NULL_TEXT.getCode(), e);
             //Base64编码为空
-        } else if (e instanceof NullBase64Exception) {
-            return R.failure(R.State.ERR_NULL_BASE64, e);
+            case NullBase64Exception nullBase64Exception -> R.failure(State.ERR_NULL_BASE64.getCode(), e);
             //无效的Base64编码
-        } else if (e instanceof ErrorBase64Exception) {
-            return R.failure(R.State.ERR_BASE64, e);
-        } else {
+            case ErrorBase64Exception errorBase64Exception -> R.failure(State.ERR_BASE64.getCode(), e);
             //未知错误
-            return R.failure(R.State.ERR_UNKNOWN, e);
-        }
+            default -> R.failure(State.ERR_UNKNOWN.getCode(), e);
+        };
     }
 }

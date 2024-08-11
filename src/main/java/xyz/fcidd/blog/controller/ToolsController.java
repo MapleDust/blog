@@ -1,15 +1,16 @@
 package xyz.fcidd.blog.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.fcidd.blog.dto.R;
 import xyz.fcidd.blog.service.ToolsService;
 
-import javax.annotation.Resource;
+
 
 @RestController
 public class ToolsController {
-    @Resource
+    @Autowired
     private ToolsService toolsService;
 
     /**

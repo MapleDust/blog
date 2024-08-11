@@ -1,5 +1,6 @@
 package xyz.fcidd.blog.dto;
 
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -20,8 +21,8 @@ public class R<T> implements Serializable {
      *
      * @return 将状态码标记为成功
      */
-    public static R ok() {
-        return new R().setState(State.SUCCESS);
+    public static <T> R<T> ok() {
+        return new R<T>().setState(State.SUCCESS.getCode());
     }
 
     /**
@@ -31,8 +32,8 @@ public class R<T> implements Serializable {
      * @param <T>  响应到客户端数据的类型
      * @return 操作成功且封装了相应数据的对象
      */
-    public static <T> R ok(T data) {
-        return R.ok().setData(data);
+    public static <T> R<T> ok(T data) {
+        return new R<T>().setState(State.SUCCESS.getCode()).setData(data);
     }
 
     /**
@@ -42,31 +43,8 @@ public class R<T> implements Serializable {
      * @param e     操作失败并捕获异常的对象
      * @return 已经封装了操作失败的状态码，并返回错误信息
      */
-    public static R failure(int state, Throwable e) {
-        return new R().setState(state).setMessage(e.getMessage());
-    }
-
-    public interface State {
-        /**
-         * 成功
-         */
-        int SUCCESS = 200;
-        /**
-         * Base64加密的文本为空
-         */
-        int ERR_BASE64_NULL_TEXT = 401;
-        /**
-         * Base64编码为空
-         */
-        int ERR_NULL_BASE64 = 402;
-        /**
-         * Base64编码无效
-         */
-        int ERR_BASE64 = 403;
-        /**
-         * 未知错误
-         */
-        int ERR_UNKNOWN = 900;
+    public static <T> R<T> failure(int state, Throwable e) {
+        return new R<T>().setState(state).setMessage(e.getMessage());
     }
 }
 
