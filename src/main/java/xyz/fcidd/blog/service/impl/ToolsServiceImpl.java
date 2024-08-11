@@ -11,7 +11,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.regex.Pattern;
 
-
 @Service
 public class ToolsServiceImpl implements ToolsService {
     /**
