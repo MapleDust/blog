@@ -1,16 +1,15 @@
 package xyz.fcidd.blog.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.fcidd.blog.dto.R;
 import xyz.fcidd.blog.service.ToolsService;
 
 
-
 @RestController
 public class ToolsController {
-    @Autowired
+    @Resource
     private ToolsService toolsService;
 
     /**
@@ -19,6 +18,7 @@ public class ToolsController {
      * @param text 文本
      * @return 加密过后的文本
      */
+    @SuppressWarnings("rawtypes")
     @RequestMapping("/base64Encryption")
     public R base64Encryption(String text) {
         String base64 = toolsService.base64Encryption(text);
@@ -31,6 +31,7 @@ public class ToolsController {
      * @param base64 Base64编码
      * @return 解密过后的文本
      */
+    @SuppressWarnings("rawtypes")
     @RequestMapping("/base64Decryption")
     public R base64Decryption(String base64) {
         String text = toolsService.base64Decryption(base64);

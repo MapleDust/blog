@@ -24,7 +24,7 @@ public class ToolsServiceImpl implements ToolsService {
     @Override
     public String base64Encryption(String text) {
         //检查用户输入的文本是否为空
-        if (text == null || text.equals("")) {
+        if (text == null || text.isEmpty()) {
             throw new Base64NullTextException("请输入需要加密为Base64的文本");
         }
         //返回加密过后的Base64编码
@@ -41,7 +41,7 @@ public class ToolsServiceImpl implements ToolsService {
     @Override
     public String base64Decryption(String base64) {
         //检查用户输入Base64是否为空
-        if (base64 == null || base64.equals("")) {
+        if (base64 == null || base64.isEmpty()) {
             throw new NullBase64Exception("请输入需要解密的Base64编码");
         }
         //去除用户输入base64的前后空格
