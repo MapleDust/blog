@@ -9,6 +9,8 @@ import xyz.fcidd.blog.exception.ErrorBase64Exception;
 import xyz.fcidd.blog.exception.NullBase64Exception;
 import xyz.fcidd.blog.exception.ServiceException;
 
+import java.util.Objects;
+
 /**
  * 异常统一处理类
  */
@@ -18,7 +20,7 @@ public class GlobalExceptionHandler {
     public R handlerException(Throwable e) {
         //加密的文本为空
         return switch (e) {
-            case Base64NullTextException base64NullTextException -> R.failure(State.ERR_BASE64_NULL_TEXT.getCode(), e);
+            case Base64NullTextException base64NullTextException -> R.failure(State.SUCCESS.getCode(), e);
             //Base64编码为空
             case NullBase64Exception nullBase64Exception -> R.failure(State.ERR_NULL_BASE64.getCode(), e);
             //无效的Base64编码
