@@ -32,8 +32,8 @@ public class R<T> implements Serializable {
      * @param <T>  响应到客户端数据的类型
      * @return 操作成功且封装了相应数据的对象
      */
-    public static <T> R<T> ok(T data) {
-        return new R<T>().setState(State.SUCCESS.getCode()).setData(data);
+    public static <T> R<?> ok(T data) {
+        return R.ok().setData(data);
     }
 
     /**

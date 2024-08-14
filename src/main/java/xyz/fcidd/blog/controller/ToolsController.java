@@ -18,9 +18,8 @@ public class ToolsController {
      * @param text 文本
      * @return 加密过后的文本
      */
-    @SuppressWarnings("rawtypes")
     @RequestMapping("/base64Encryption")
-    public R base64Encryption(String text) {
+    public R<?> base64Encryption(String text) {
         String base64 = toolsService.base64Encryption(text);
         return R.ok(base64);
     }
@@ -31,9 +30,8 @@ public class ToolsController {
      * @param base64 Base64编码
      * @return 解密过后的文本
      */
-    @SuppressWarnings("rawtypes")
     @RequestMapping("/base64Decryption")
-    public R base64Decryption(String base64) {
+    public R<?> base64Decryption(String base64) {
         String text = toolsService.base64Decryption(base64);
         return R.ok(text);
     }
