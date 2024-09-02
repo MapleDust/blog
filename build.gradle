@@ -1,38 +1,29 @@
 plugins {
     alias(libs.plugins.java)
-    alias(libs.plugins.org.springframework.boot)
-    alias(libs.plugins.spring.dependency.management)
 }
 
-version = "1.0.2"
-group = "xyz.fcidd"
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+allprojects {
+    // 项目信息
+    version = "1.0.2"
+    group = "xyz.fcidd"
+    // 将java版本设置为21
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
     }
-}
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+    // 将编码设置为UTF-8
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = "UTF-8"
     }
-}
-
-test {
-    enabled false
-}
-
-repositories {
-    maven {
-        url "https://mirrors.huaweicloud.com/repository/maven/"
+    // 跳过测试
+    test {
+        enabled false
     }
-}
-
-dependencies {
-    implementation(libs.spring.boot.starter.web)
-    implementation(libs.spring.boot.starter.thymeleaf)
-    implementation(libs.jakarta.annotation.api)
-    compileOnly(libs.lombok)
-    annotationProcessor(libs.lombok)
+    // 设置国内镜像
+    repositories {
+        maven {
+            url "https://mirrors.huaweicloud.com/repository/maven/"
+        }
+    }
 }
