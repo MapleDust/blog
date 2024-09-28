@@ -1,0 +1,32 @@
+{
+  "name": "blog-web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "element-plus": "^2.8.3",
+    "terser": "^5.34.1",
+    "vite-plugin-imagemin": "^0.6.1",
+    "vue": "^3.4.37",
+    "vue-router": "^4.4.5"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "javascript-obfuscator": "^4.1.1",
+    "rollup-plugin-javascript-obfuscator": "^1.0.4",
+    "rollup-plugin-obfuscator": "^1.1.0",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-html": "^3.2.2",
+    "vite-plugin-obfuscator": "^1.0.5",
+    "vue-tsc": "^2.0.29",
+    "vue-wechat-title": "^2.0.7"
+  }
+}

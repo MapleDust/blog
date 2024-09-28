@@ -1,6 +1,6 @@
 package xyz.fcidd.blog.service;
 
-public interface ToolsService {
+public interface Base64Service {
     /**
      * 将从前端传来的文本进行Base64加密处理
      *
