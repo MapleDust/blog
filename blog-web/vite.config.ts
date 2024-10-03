@@ -5,6 +5,10 @@ import viteCompression from 'vite-plugin-compression';
 import imagemin from 'vite-plugin-imagemin';
 import vue from '@vitejs/plugin-vue'
 import {createHtmlPlugin} from 'vite-plugin-html';
+// element-plus按需引入
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -30,7 +34,7 @@ export default defineConfig({
             },
         }),
         obfuscator({
-            global: true, // 设置为 false 以单独混淆每个文件
+            global: false, // 设置为 false 以单独混淆每个文件
             options: { // 这里配置 javascript-obfuscator 的选项
                 compact: true,
                 controlFlowFlattening: true,
@@ -62,7 +66,13 @@ export default defineConfig({
         }),
         createHtmlPlugin({
             minify: true
-        })
+        }),
+        AutoImport({
+            resolvers: [ElementPlusResolver()],
+        }),
+        Components({
+            resolvers: [ElementPlusResolver()],
+        }),
     ],
     build: {
         minify: 'terser', // 或者 'terser'，根据需要选择
