@@ -56,7 +56,7 @@ public class Base64ServiceImpl implements Base64Service {
         if (!isBase64) {
             throw new ErrorBase64Exception("请输入有效的Base64编码");
         }
-        //将解码的文本发返回给客户
+        //将解码的文本发返回给前端
         byte[] decodeByte = Base64.getDecoder().decode(base64replace.getBytes());
         return new String(decodeByte, StandardCharsets.UTF_8);
     }

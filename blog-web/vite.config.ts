@@ -8,7 +8,7 @@ import {createHtmlPlugin} from 'vite-plugin-html';
 // element-plus按需引入
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,7 +21,7 @@ export default defineConfig({
         }),
         imagemin({
             optipng: {
-                optimizationLevel: 5,
+                optimizationLevel: 7,
             },
             gifsicle: {
                 interlaced: false,
@@ -30,25 +30,25 @@ export default defineConfig({
                 quality: 75,
             },
             svgo: {
-                plugins: [{removeViewBox: true}, {cleanupIDs: false}],
+                plugins: [{removeViewBox: true}, {cleanupIDs: true}],//cleanupIDs: false
             },
         }),
         obfuscator({
-            global: false, // 设置为 false 以单独混淆每个文件
-            options: { // 这里配置 javascript-obfuscator 的选项
+            global: true,
+            options: {
                 compact: true,
                 controlFlowFlattening: true,
                 deadCodeInjection: true,
                 debugProtection: true,
                 debugProtectionInterval: 0,
                 disableConsoleOutput: false,
-                identifierNamesGenerator: "hexadecimal",
+                identifierNamesGenerator: "mangled",
                 log: false,
                 numbersToExpressions: false,
-                renameGlobals: false,
-                selfDefending: false,
+                renameGlobals: true,//false
+                selfDefending: true,//false
                 simplify: true,
-                splitStrings: false,
+                splitStrings: true,//false
                 stringArray: true,
                 stringArrayCallsTransform: false,
                 stringArrayCallsTransformThreshold: 0.5,
@@ -81,10 +81,11 @@ export default defineConfig({
                 drop_console: true,
                 drop_debugger: true,
                 pure_funcs: ['console.log', 'console.info', 'console.error'],
+                ecma: 2020
             },
             format: {
                 comments: false, // 确保不保留任何注释
-                beautify: false, // 不美化输出，即去除换行和空格
+                //beautify: false, // 不美化输出，即去除换行和空格
             },
         },
     },
