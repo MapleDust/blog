@@ -8,7 +8,7 @@ import Nav from './components/Nav.vue';
     <source src="./assets/video/bg.mp4">
   </video>
   <!-- 背景视频结束 -->
-  <Nav />
+  <Nav/>
 </template>
 
 <style scoped>
