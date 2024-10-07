@@ -33,7 +33,7 @@ function base64Encryption() {
       // 将base64编码的按钮设置为普通
       base64CodeButton.value = "primary"
       // 将加密后的结果清空
-      base64Code.value = null
+      base64Code.value = ""
     }
     // 如果后端返回的状态码是正确的
     if (data.state === 200) {
@@ -56,7 +56,7 @@ function base64Encryption() {
       // 将base64按钮设置为普通
       base64CodeButton.value = "primary"
       // 清空base64加密结果
-      base64Code.value = null
+      base64Code.value = ""
       // 将错误提示隐藏
       base64HasError.value = false
       // 弹出提示框
@@ -90,7 +90,7 @@ function base64Decryption() {
       // 将文本的按钮设置为普通
       base64TextButton.value = "primary"
       // 将加密前的结果清空
-      base64Text.value = null
+      base64Text.value = ""
     }
     if (data.state === 200) {
       // 将错误提示隐藏
@@ -112,7 +112,7 @@ function base64Decryption() {
       // 将文本按钮设置为普通
       base64TextButton.value = "primary"
       // 清空base64解密后的文本内容
-      base64Text.value = null
+      base64Text.value = ""
       // 弹出提示框
       ElNotification({
         title: '错误',
