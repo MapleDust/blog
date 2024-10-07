@@ -1,9 +1,0 @@
-.bg {
-    background: url(../img/tools/bg.jpg) no-repeat center 0px;
-    background-position: center 0;
-    background-size: cover;
-}
-
-.container > .card {
-    margin-top: 1rem;
-}
