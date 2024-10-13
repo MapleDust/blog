@@ -1,4 +1,4 @@
-package xyz.fcidd.blog.exception;
+package xyz.fcidd.blog.api.exception;
 
 /**
  * base64编码为空

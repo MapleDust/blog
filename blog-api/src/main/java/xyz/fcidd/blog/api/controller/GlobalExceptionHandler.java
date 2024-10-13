@@ -1,13 +1,13 @@
-package xyz.fcidd.blog.controller;
+package xyz.fcidd.blog.api.controller;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import xyz.fcidd.blog.dto.R;
-import xyz.fcidd.blog.dto.State;
-import xyz.fcidd.blog.exception.Base64NullTextException;
-import xyz.fcidd.blog.exception.ErrorBase64Exception;
-import xyz.fcidd.blog.exception.NullBase64Exception;
-import xyz.fcidd.blog.exception.ServiceException;
+import xyz.fcidd.blog.api.dto.R;
+import xyz.fcidd.blog.api.dto.State;
+import xyz.fcidd.blog.api.exception.Base64NullTextException;
+import xyz.fcidd.blog.api.exception.ErrorBase64Exception;
+import xyz.fcidd.blog.api.exception.NullBase64Exception;
+import xyz.fcidd.blog.api.exception.ServiceException;
 
 /**
  * 异常统一处理类

@@ -1,4 +1,4 @@
-package xyz.fcidd.blog.exception;
+package xyz.fcidd.blog.api.exception;
 
 /**
  * 服务层所有的基类

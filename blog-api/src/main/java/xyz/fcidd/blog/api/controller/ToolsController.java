@@ -1,11 +1,10 @@
-package xyz.fcidd.blog.controller;
+package xyz.fcidd.blog.api.controller;
 
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import xyz.fcidd.blog.dto.R;
-import xyz.fcidd.blog.service.Base64Service;
+import xyz.fcidd.blog.api.dto.R;
+import xyz.fcidd.blog.api.service.Base64Service;
 
 
 @RestController

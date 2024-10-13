@@ -1,4 +1,4 @@
-package xyz.fcidd.blog.dto;
+package xyz.fcidd.blog.api.dto;
 
 
 import lombok.Data;

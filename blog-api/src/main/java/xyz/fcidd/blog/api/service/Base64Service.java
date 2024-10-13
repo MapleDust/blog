@@ -1,4 +1,4 @@
-package xyz.fcidd.blog.service;
+package xyz.fcidd.blog.api.service;
 
 public interface Base64Service {
     /**

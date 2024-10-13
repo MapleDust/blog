@@ -1,17 +1,14 @@
-package xyz.fcidd.blog.service.impl;
+package xyz.fcidd.blog.api.service.impl;
 
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import xyz.fcidd.blog.exception.Base64NullTextException;
-import xyz.fcidd.blog.exception.ErrorBase64Exception;
-import xyz.fcidd.blog.exception.NullBase64Exception;
-import xyz.fcidd.blog.service.Base64Service;
+import xyz.fcidd.blog.api.exception.Base64NullTextException;
+import xyz.fcidd.blog.api.exception.ErrorBase64Exception;
+import xyz.fcidd.blog.api.exception.NullBase64Exception;
+import xyz.fcidd.blog.api.service.Base64Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 @Service

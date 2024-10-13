@@ -1,2 +1,3 @@
 rootProject.name = "blog"
 include "blog-api"
+include 'blog-eureka-server'
