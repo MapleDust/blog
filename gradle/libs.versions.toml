@@ -1,0 +1,41 @@
+[plugins]
+# springboot插件
+spring-boot = { id = "org.springframework.boot", version = "4.1.1" }
+# spring依赖管理
+spring-dependency-management = { id = "io.spring.dependency-management", version = "1.1.7" }
+
+[libraries]
+# 参数验证
+spring-boot-validation = { group = "org.springframework.boot", name = "spring-boot-starter-validation" }
+# web服务
+spring-boot-web = { group = "org.springframework.boot", name = "spring-boot-starter-webmvc" }
+# 邮箱服务
+spring-boot-mail = { group = "org.springframework.boot", name = "spring-boot-starter-mail" }
+# mybatis
+spring-boot-mybatis = { group = "org.mybatis.spring.boot", name = "mybatis-spring-boot-starter", version = "4.1.0" }
+# spring boot jdbc
+spring-boot-jdbc = { group = "org.springframework.boot", name = "spring-boot-starter-jdbc" }
+# 安全框架
+spring-boot-security = { group = "org.springframework.boot", name = "spring-boot-starter-security" }
+# oauth2授权服务器
+spring-boot-oauth2-authorization-server = { group = "org.springframework.boot", name = "spring-boot-starter-security-oauth2-authorization-server" }
+# oauth2资源服务器
+spring-boot-oauth2-resource-server = { group = "org.springframework.boot", name = "spring-boot-starter-security-oauth2-resource-server" }
+# redis
+spring-boot-redis = { group = "org.springframework.boot", name = "spring-boot-starter-data-redis" }
+
+# mysql数据库
+mysql = { group = "com.mysql", name = "mysql-connector-j", version = "26.7.0" }
+# lombok工具箱
+lombok = { group = "org.projectlombok", name = "lombok" }
+# JWT签发
+jwt = { group = "com.nimbusds", name = "nimbus-jose-jwt", version = "10.10" }
+
+# 单元测试
+junit = { group = "org.junit.platform", name = "junit-platform-launcher" }
+# 参数验证测试
+spring-boot-validation-test = { group = "org.springframework.boot", name = "spring-boot-starter-validation-test" }
+# web服务测试
+spring-boot-web-test = { group = "org.springframework.boot", name = "spring-boot-starter-webmvc-test" }
+# 安全框架测试
+spring-boot-security-test = { group = "org.springframework.security", name = "spring-security-test" }

@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: blog-api
+  mail:
+    host: smtp.163.com
+    port: 587
+    username:
+    password:
+    default-encoding: utf-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+            checkserveridentity: true
+          ssl.protocols: TLSv1.2
+          connectiontimeout: 10000
+          timeout: 10000
+          writetimeout: 10000
+  datasource:
+    url: jdbc:mysql://localhost:3306/blog
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password:
+      database: 0
+logging:
+  level:
+    top.fcidd.blog.api: debug
+app:
+  activate:
+    url-prefix: http://localhost:8080/api/auth/activate
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: top.fcidd.blog.api.entity

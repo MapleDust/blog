@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.fcidd.blog.api.mapper.SysUserMapper">
+
+    <resultMap id="BaseResultMap" type="top.fcidd.blog.api.entity.SysUser">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="email" property="email"/>
+        <result column="role" property="role"/>
+        <result column="activated" property="activated"/>
+        <result column="enabled" property="enabled"/>
+        <result column="activate_token" property="activateToken"/>
+        <result column="token_expire_time" property="tokenExpireTime"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="selectByUsername" resultMap="BaseResultMap">
+        SELECT *
+        FROM sys_user
+        WHERE username = #{username}
+    </select>
+
+    <select id="selectByUuid" resultMap="BaseResultMap">
+        SELECT *
+        FROM sys_user
+        WHERE uuid = #{uuid}
+    </select>
+
+    <select id="selectByActivateToken" resultMap="BaseResultMap">
+        SELECT *
+        FROM sys_user
+        WHERE activate_token = #{activateToken}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_user (uuid, username, password, email, role, activated, enabled, activate_token,
+                              token_expire_time)
+        VALUES (#{uuid}, #{username}, #{password}, #{email}, #{role}, #{activated}, #{enabled}, #{activateToken},
+                #{tokenExpireTime})
+    </insert>
+
+    <update id="updateActivated">
+        UPDATE sys_user
+        SET activated   = #{activated},
+            update_time = NOW()
+        WHERE uuid = #{uuid}
+    </update>
+
+    <update id="updateEnabled">
+        UPDATE sys_user
+        SET enabled     = #{enabled},
+            update_time = NOW()
+        WHERE uuid = #{uuid}
+    </update>
+
+    <update id="updateActivateToken">
+        UPDATE sys_user
+        SET activate_token    = #{activateToken},
+            token_expire_time = #{tokenExpireTime},
+            update_time       = NOW()
+        WHERE uuid = #{uuid}
+    </update>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        SELECT *
+        FROM sys_user
+        ORDER BY create_time DESC
+    </select>
+
+</mapper>
