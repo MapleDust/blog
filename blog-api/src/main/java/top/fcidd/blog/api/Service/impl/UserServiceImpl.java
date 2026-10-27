@@ -22,6 +22,7 @@ import top.fcidd.blog.api.Service.UserService;
 import top.fcidd.blog.api.dto.LoginDTO;
 import top.fcidd.blog.api.dto.RegisterDTO;
 import top.fcidd.blog.api.entity.SysUser;
+import top.fcidd.blog.api.exception.*;
 import top.fcidd.blog.api.mapper.SysUserMapper;
 import top.fcidd.blog.api.vo.TokenVO;
 
@@ -64,7 +65,7 @@ public class UserServiceImpl implements UserService {
         // 校验用户名是否存在
         SysUser existUser = userMapper.selectByUsername(dto.getUsername());
         if (existUser != null) {
-            throw new RuntimeException("该账号已注册");
+            throw new RegisterException("该账号已注册");
         }
 
         SysUser user = new SysUser();
@@ -96,17 +97,17 @@ public class UserServiceImpl implements UserService {
     @Transactional(rollbackFor = Exception.class)
     public void activateUser(String token) {
         if (!StringUtils.hasText(token)) {
-            throw new RuntimeException("激活令牌不能为空");
+            throw new ActivateException("激活令牌不能为空");
         }
         SysUser user = userMapper.selectByActivateToken(token);
         if (user == null) {
-            throw new RuntimeException("激活链接无效");
+            throw new ActivateException("激活链接无效");
         }
         if (user.getActivated()) {
-            throw new RuntimeException("该邮箱已激活，无需重复操作");
+            throw new ActivateException("该邮箱已激活，无需重复操作");
         }
         if (LocalDateTime.now().isAfter(user.getTokenExpireTime())) {
-            throw new RuntimeException("激活链接已过期，请重新注册或重发邮件");
+            throw new ActivateException("激活链接已过期，请重新注册或重发邮件");
         }
         // 修改激活状态
         userMapper.updateActivated(user.getUuid(), true);
@@ -119,7 +120,7 @@ public class UserServiceImpl implements UserService {
     public void changeUserEnabled(String userUuid, Boolean enabled) {
         SysUser user = userMapper.selectByUuid(userUuid);
         if (user == null) {
-            throw new RuntimeException("用户不存在");
+            throw new ChangeUserException("用户不存在");
         }
         userMapper.updateEnabled(userUuid, enabled);
     }
@@ -149,7 +150,7 @@ public class UserServiceImpl implements UserService {
             helper.setText(html, true);
             mailSender.send(mimeMessage);
         } catch (MessagingException e) {
-            throw new RuntimeException("邮件发送失败", e);
+            throw new SendMailException("邮件发送失败");
         }
         return 1;
     }
@@ -159,13 +160,13 @@ public class UserServiceImpl implements UserService {
         // 1. 通过邮箱查询用户
         SysUser sysUser = userMapper.selectByEmail(dto.getEmail());
         if (sysUser == null) {
-            throw new RuntimeException("邮箱不存在");
+            throw new LoginException("邮箱不存在");
         }
         if (!sysUser.getActivated()) {
-            throw new RuntimeException("账号未激活，请先查收邮件激活");
+            throw new LoginException("账号未激活，请先查收邮件激活");
         }
         if (!sysUser.getEnabled()) {
-            throw new RuntimeException("账号已被禁用");
+            throw new LoginException("账号已被禁用");
         }
 
         // 2. 重点：principal 传入数据库里的 username，不是email！
