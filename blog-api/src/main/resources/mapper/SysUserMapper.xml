@@ -70,5 +70,17 @@
         FROM sys_user
         ORDER BY create_time DESC
     </select>
+    <select id="selectByEmail" resultType="top.fcidd.blog.api.entity.SysUser">
+        SELECT id,
+               username,
+               email,
+               password,
+               uuid,
+               role,
+               activated,
+               enabled
+        FROM sys_user
+        WHERE email = #{email}
+    </select>
 
 </mapper>

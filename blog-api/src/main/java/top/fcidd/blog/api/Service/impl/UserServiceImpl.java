@@ -45,6 +45,9 @@ public class UserServiceImpl implements UserService {
     @Value("${app.activate.url-prefix}")
     private String activateUrlPrefix;
 
+    @Value("${spring.mail.username}")
+    private String emailFrom;
+
     // 激活链接有效期：24小时
     private static final int EXPIRE_HOUR = 24;
 
@@ -138,6 +141,7 @@ public class UserServiceImpl implements UserService {
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+            helper.setFrom(emailFrom);
             helper.setTo(email);
             helper.setSubject("账号邮箱激活");
             String link = activateUrlPrefix + "?token=" + token;
@@ -152,8 +156,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public TokenVO login(LoginDTO dto) {
+        // 1. 通过邮箱查询用户
+        SysUser sysUser = userMapper.selectByEmail(dto.getEmail());
+        if (sysUser == null) {
+            throw new RuntimeException("邮箱不存在");
+        }
+        if (!sysUser.getActivated()) {
+            throw new RuntimeException("账号未激活，请先查收邮件激活");
+        }
+        if (!sysUser.getEnabled()) {
+            throw new RuntimeException("账号已被禁用");
+        }
+
+        // 2. 重点：principal 传入数据库里的 username，不是email！
         UsernamePasswordAuthenticationToken authToken =
-                new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword());
+                new UsernamePasswordAuthenticationToken(sysUser.getUsername(), dto.getPassword());
         Authentication authentication = authenticationManager.authenticate(authToken);
 
         Instant now = Instant.now();
@@ -163,7 +180,7 @@ public class UserServiceImpl implements UserService {
                 .issuer("self")
                 .issuedAt(now)
                 .expiresAt(now.plusSeconds(expireSeconds))
-                .subject(authentication.getName())
+                .subject(authentication.getName()) // 这里拿到的就是 username，和之前保持一致
                 .claim("authorities", authentication.getAuthorities().stream()
                         .map(a -> a.getAuthority())
                         .collect(Collectors.toList()))
@@ -171,14 +188,14 @@ public class UserServiceImpl implements UserService {
 
         JwtEncoderParameters encoderParams = JwtEncoderParameters.from(claims);
         Jwt jwt = jwtEncoder.encode(encoderParams);
-        log.debug("生成的jwt：{}", jwt.getTokenValue()); // 打印这一行
+        log.debug("生成的jwt：{}", jwt.getTokenValue());
 
         TokenVO tokenVO = new TokenVO();
         tokenVO.setAccessToken(jwt.getTokenValue());
         tokenVO.setTokenType("Bearer");
         tokenVO.setExpiresIn(expireSeconds);
         tokenVO.setRefreshToken(null);
-        log.debug("tokenVO对象：{}", tokenVO); // 打印对象，看赋值是否成功
+        log.debug("tokenVO对象：{}", tokenVO);
         return tokenVO;
     }
 

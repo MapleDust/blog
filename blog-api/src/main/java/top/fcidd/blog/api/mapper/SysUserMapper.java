@@ -23,6 +23,11 @@ public interface SysUserMapper {
     SysUser selectByActivateToken(@Param("activateToken") String activateToken);
 
     /**
+     *
+     */
+    SysUser selectByEmail(@Param("email") String email);
+
+    /**
      * 新增用户
      */
     int insert(SysUser user);
