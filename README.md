@@ -9,6 +9,6 @@
 #### 二、使用说明
 
 * 确定以上环境可以正常运行
-* 在数据库中执行sql脚本（脚本可从[Releases](https://github.com/MapleDust/blog/releases)中下载）
+* 在数据库中执行sql脚本（脚本可从[Releases](https://github.com/MapleDust/blog/wiki/API%E6%96%87%E6%A1%A3)中下载）
 * 在 blog-api 中 resources/application.yml 相关邮件、数据库及redis配置正确，然后编译项目既可运行,详细的请求方式可见[wiki](https://github.com/MapleDust/blog/wiki)
 
