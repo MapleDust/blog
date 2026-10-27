@@ -6,10 +6,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import top.fcidd.blog.api.Service.UserService;
-import top.fcidd.blog.api.dto.LoginDTO;
-import top.fcidd.blog.api.dto.LogoutDTO;
-import top.fcidd.blog.api.dto.RegisterDTO;
-import top.fcidd.blog.api.dto.Result;
+import top.fcidd.blog.api.dto.*;
 import top.fcidd.blog.api.vo.TokenVO;
 
 @RestController
@@ -51,8 +48,8 @@ public class AuthController {
 
     @PutMapping("/admin/user/enabled")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public Result<Void> changeEnabled(@RequestParam String userUuid, @RequestParam Boolean enabled) {
-        userService.changeUserEnabled(userUuid, enabled);
+    public Result<Void> changeEnabled(@RequestBody @Valid UserEnabledDTO dto) {
+        userService.changeUserEnabled(dto.getUserUuid(), dto.getEnabled());
         return Result.success();
     }
 }
