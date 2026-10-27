@@ -6,6 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import top.fcidd.blog.api.dto.Result;
+import top.fcidd.blog.api.exception.BlogApiException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -23,6 +24,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BadCredentialsException.class)
     public Result<Void> exception(Exception e) {
+        return Result.fail(400, e.getMessage());
+    }
+
+    @ExceptionHandler(BlogApiException.class)
+    public Result<Void> exception(BlogApiException e) {
         return Result.fail(400, e.getMessage());
     }
 
