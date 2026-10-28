@@ -38,6 +38,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import top.fcidd.blog.api.entity.SecurityUser;
 import top.fcidd.blog.api.entity.SysUser;
+import top.fcidd.blog.api.exception.ActivateException;
+import top.fcidd.blog.api.exception.LoginException;
 import top.fcidd.blog.api.filter.JwtBlackListFilter;
 import top.fcidd.blog.api.mapper.SysUserMapper;
 
@@ -166,10 +168,10 @@ public class SecurityConfig {
                 throw new UsernameNotFoundException("用户不存在");
             }
             if (!user.getActivated()) {
-                throw new RuntimeException("请先前往邮箱激活账号");
+                throw new ActivateException("请先前往邮箱激活账号");
             }
             if (!user.getEnabled()) {
-                throw new RuntimeException("账户已被管理员禁用");
+                throw new LoginException("账户已被管理员禁用");
             }
             return new SecurityUser(user);
         };
