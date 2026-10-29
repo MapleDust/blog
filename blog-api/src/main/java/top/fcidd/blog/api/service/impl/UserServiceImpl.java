@@ -1,4 +1,4 @@
-package top.fcidd.blog.api.Service.impl;
+package top.fcidd.blog.api.service.impl;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import top.fcidd.blog.api.Service.UserService;
+import top.fcidd.blog.api.service.UserService;
 import top.fcidd.blog.api.dto.LoginDTO;
 import top.fcidd.blog.api.dto.RegisterDTO;
 import top.fcidd.blog.api.entity.SysUser;

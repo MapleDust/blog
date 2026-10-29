@@ -1,4 +1,4 @@
-package top.fcidd.blog.api.Service;
+package top.fcidd.blog.api.service;
 
 import top.fcidd.blog.api.dto.LoginDTO;
 import top.fcidd.blog.api.dto.RegisterDTO;

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import top.fcidd.blog.api.Service.UserService;
+import top.fcidd.blog.api.service.UserService;
 import top.fcidd.blog.api.dto.*;
 import top.fcidd.blog.api.vo.TokenVO;
 
